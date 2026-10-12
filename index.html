@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0d1a2a" />
+  <meta name="description" content="Tenderson is making the tender bidding workflow simpler for agents and companies. We’re currently working on our website. Stay tuned." />
+  <title>Tenderson — Coming Soon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0b1726;
+      --navy-soft: #12243a;
+      --mint: #c7f36b;
+      --mint-strong: #a8df48;
+      --white: #f7f8f5;
+      --muted: #aab7c5;
+      --line: rgba(232, 240, 246, .13);
+    }
+    * { box-sizing: border-box; }
+    html { min-height: 100%; background: var(--navy); }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      color: var(--white);
+      font-family: "DM Sans", sans-serif;
+      background:
+        radial-gradient(ellipse at 79% 24%, rgba(74, 117, 125, .20), transparent 38%),
+        radial-gradient(ellipse at 8% 93%, rgba(91, 123, 47, .11), transparent 34%),
+        var(--navy);
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .19;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.14'/%3E%3C/svg%3E");
+      mix-blend-mode: soft-light;
+      z-index: 0;
+    }
+    .page { position: relative; z-index: 1; display: flex; flex-direction: column; min-height: 100vh; padding: 30px clamp(22px, 5.2vw, 76px) 24px; }
+    header { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; color: var(--white); text-decoration: none; }
+    .brand-mark { width: 35px; height: 35px; display: grid; place-items: center; border-radius: 11px; background: var(--mint); color: var(--navy); box-shadow: 0 0 28px rgba(199, 243, 107, .09); }
+    .brand-mark svg { width: 21px; height: 21px; }
+    .brand-name { font-family: "Manrope", sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -.8px; }
+    .top-note { display: inline-flex; align-items: center; gap: 9px; color: #d1dbe4; font-size: 12px; letter-spacing: .09em; text-transform: uppercase; }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 12px rgba(199,243,107,.48); }
+    main { flex: 1; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(320px, .95fr); align-items: center; gap: clamp(30px, 6vw, 92px); max-width: 1320px; width: 100%; margin: 0 auto; padding: 68px 0 76px; }
+    .copy { max-width: 690px; animation: rise .75s ease-out both; }
+    .eyebrow { display: flex; align-items: center; gap: 12px; margin: 0 0 27px; color: var(--mint); font-size: 12px; font-weight: 700; letter-spacing: .19em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--mint); }
+    h1 { margin: 0; max-width: 720px; font-family: "Manrope", sans-serif; font-size: clamp(44px, 6.3vw, 83px); line-height: 1.045; font-weight: 600; letter-spacing: -.067em; }
+    h1 .highlight { color: var(--mint); }
+    .message { margin: 27px 0 0; color: #c6d0da; font-size: clamp(16px, 1.5vw, 19px); line-height: 1.8; max-width: 510px; }
+    .message strong { color: var(--white); font-weight: 600; }
+    .supporting { margin-top: 31px; display: flex; align-items: center; gap: 11px; color: #8293a5; font-size: 13px; }
+    .supporting svg { flex: none; width: 16px; height: 16px; color: var(--mint); }
+    .visual { position: relative; display: grid; place-items: center; min-height: 415px; animation: fadeIn 1s .12s ease-out both; }
+    .orbit { position: absolute; width: min(100%, 445px); aspect-ratio: 1; border: 1px solid rgba(202, 219, 225, .13); border-radius: 50%; transform: rotate(-18deg) scaleY(.78); }
+    .orbit::before, .orbit::after { content: ""; position: absolute; border: 1px solid rgba(202, 219, 225, .11); border-radius: 50%; inset: 27px -28px; transform: rotate(50deg); }
+    .orbit::after { inset: 65px -54px; transform: rotate(-46deg); border-color: rgba(199,243,107,.15); }
+    .orbit-dot { position: absolute; width: 9px; height: 9px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 20px rgba(199,243,107,.75); top: 17%; right: 16%; }
+    .orbit-dot.small { width: 5px; height: 5px; top: auto; bottom: 18%; right: auto; left: 10%; opacity: .72; }
+    .glass-card { position: relative; width: min(82%, 365px); padding: 24px; border: 1px solid rgba(230,240,246,.17); border-radius: 23px; background: linear-gradient(145deg, rgba(30, 51, 72, .83), rgba(14, 29, 46, .76)); box-shadow: 0 35px 90px rgba(0,0,0,.23), inset 0 1px 0 rgba(255,255,255,.045); transform: rotate(-3.2deg); backdrop-filter: blur(18px); }
+    .card-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 27px; }
+    .card-kicker { color: #a8b7c6; font-size: 10px; text-transform: uppercase; letter-spacing: .14em; }
+    .card-symbol { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; color: var(--mint); background: rgba(199,243,107,.10); }
+    .card-symbol svg { width: 18px; height: 18px; }
+    .line { height: 8px; border-radius: 20px; background: rgba(225,235,241,.13); margin-bottom: 11px; }
+    .line.wide { width: 83%; height: 12px; background: rgba(236,243,246,.85); }
+    .line.medium { width: 62%; }
+    .line.short { width: 42%; }
+    .card-divider { height: 1px; margin: 22px 0 18px; background: rgba(225,235,241,.11); }
+    .mini-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 14px; }
+    .mini-label { width: 37%; height: 7px; border-radius: 10px; background: rgba(225,235,241,.17); }
+    .mini-value { width: 24%; height: 7px; border-radius: 10px; background: rgba(199,243,107,.69); }
+    .mini-value.alt { width: 18%; opacity: .55; }
+    .floating-tag { position: absolute; display: flex; align-items: center; gap: 10px; padding: 13px 15px; border-radius: 14px; border: 1px solid rgba(235,243,247,.17); background: rgba(23,42,60,.92); box-shadow: 0 16px 35px rgba(0,0,0,.22); color: #e8edf0; font-size: 12px; white-space: nowrap; }
+    .floating-tag svg { color: var(--mint); width: 17px; height: 17px; }
+    .tag-top { top: 10%; right: 0; transform: rotate(4deg); }
+    .tag-bottom { bottom: 10%; left: 0; transform: rotate(-3deg); }
+    footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 20px; border-top: 1px solid var(--line); color: #75879a; font-size: 12px; }
+    .footer-brand { color: #b3c0cc; font-weight: 600; }
+    .footer-note { display: flex; align-items: center; gap: 8px; }
+    .footer-note span { width: 4px; height: 4px; border-radius: 50%; background: var(--mint); }
+    @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    @media (max-width: 800px) {
+      .page { padding-top: 24px; }
+      main { grid-template-columns: 1fr; gap: 16px; padding: 76px 0 58px; }
+      .copy { margin: 0 auto; text-align: center; }
+      .eyebrow { justify-content: center; margin-bottom: 22px; }
+      .message { margin-left: auto; margin-right: auto; }
+      .supporting { justify-content: center; }
+      .visual { min-height: 340px; }
+      .orbit { width: min(82%, 340px); }
+      .glass-card { width: min(72%, 315px); padding: 20px; }
+      .tag-top { right: 3%; top: 8%; }
+      .tag-bottom { left: 3%; bottom: 7%; }
+    }
+    @media (max-width: 480px) {
+      .top-note { font-size: 10px; letter-spacing: .05em; }
+      .brand-name { font-size: 18px; }
+      .brand-mark { width: 32px; height: 32px; }
+      main { padding-top: 62px; }
+      h1 { font-size: clamp(43px, 12vw, 58px); }
+      .message { font-size: 15px; line-height: 1.75; }
+      .visual { min-height: 300px; }
+      .floating-tag { padding: 10px 12px; font-size: 11px; }
+      .tag-top { right: -1%; }
+      .tag-bottom { left: -1%; }
+      footer { align-items: flex-start; flex-direction: column; gap: 11px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header aria-label="Tenderson header">
+      <a class="brand" href="#" aria-label="Tenderson home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 5.5h14M12 5.5v13M7.5 18.5h9" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/><path d="m8 10 4 3 4-3" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="brand-name">tenderson</span>
+      </a>
+      <div class="top-note"><span class="status-dot"></span> Something better is taking shape</div>
+    </header>
+
+    <main>
+      <section class="copy" aria-labelledby="main-heading">
+        <p class="eyebrow">A smarter way to tender</p>
+        <h1 id="main-heading">Good work.<br><span class="highlight">Less paperwork.</span></h1>
+        <p class="message"><strong>We are currently working on our website, please stay tuned.</strong><br />Tenderson is being built to make the bidding workflow easier for agents and companies.</p>
+        <div class="supporting">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 14.6 9l5.9.8-4.3 4.2 1 5.9-5.2-2.8-5.2 2.8 1-5.9-4.3-4.2L9.4 9 12 3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          Thoughtfully built for the people behind every bid.
+        </div>
+      </section>
+
+      <section class="visual" aria-label="Decorative tender workflow illustration">
+        <div class="orbit" aria-hidden="true"><span class="orbit-dot"></span><span class="orbit-dot small"></span></div>
+        <div class="glass-card" aria-hidden="true">
+          <div class="card-head">
+            <span class="card-kicker">Tender workspace</span>
+            <span class="card-symbol"><svg viewBox="0 0 24 24" fill="none"><path d="M6 4.5h8l4 4v11H6v-15Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 4.5v4h4M9 12h6M9 15.5h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          </div>
+          <div class="line wide"></div>
+          <div class="line medium"></div>
+          <div class="line short"></div>
+          <div class="card-divider"></div>
+          <div class="mini-row"><span class="mini-label"></span><span class="mini-value"></span></div>
+          <div class="mini-row"><span class="mini-label"></span><span class="mini-value alt"></span></div>
+          <div class="mini-row"><span class="mini-label"></span><span class="mini-value"></span></div>
+        </div>
+        <div class="floating-tag tag-top"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Bid workflow, simplified</div>
+        <div class="floating-tag tag-bottom"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M7 4v6M17 4v6M5 11h14v9H5v-9Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> One less thing to worry about</div>
+      </section>
+    </main>
+
+    <footer>
+      <div>© <span id="year">2026</span> <span class="footer-brand">Tenderson</span>. All rights reserved.</div>
+      <div class="footer-note"><span></span> Building a better bidding experience</div>
+    </footer>
+  </div>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
